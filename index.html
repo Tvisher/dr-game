@@ -131,8 +131,107 @@
             </div>
         </div>
         <button onclick="spinWheel()" class="whell-btn">ЖМИ</button>
+        <div class="mute-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M15 8.36759V7.40759C15 4.42759 12.93 3.28759 10.41 4.86759L7.49 6.69759C7.17 6.88759 6.8 6.99759 6.43 6.99759H5C3 6.99759 2 7.99759 2 9.99759V13.9976C2 15.9976 3 16.9976 5 16.9976H7"
+                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M10.4102 19.1287C12.9302 20.7087 15.0002 19.5587 15.0002 16.5887V12.9487" stroke="white"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M18.81 9.41809C19.71 11.5681 19.44 14.0781 18 15.9981" stroke="white" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21.1501 7.79932C22.6201 11.2893 22.1801 15.3693 19.8301 18.4993" stroke="white"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M22 1.99939L2 21.9994" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
     </main>
+    <audio class="tartata-audio">
+        <source src="tratata.mp3" type="audio/mpeg" />
+    </audio>
 </body>
+
+<div class="modal" data-modal="9">
+    <div class="modal__content">
+        <div class="modal__close"></div>
+        <div class="modal__content-img">
+            <img src="img/modal-1.jpg" alt="">
+        </div>
+        <div class="modal__content-title">
+            Вам письмо с Госуслуг.<br>
+            Зайдите и откройте его.<br>
+            Очень ждем
+        </div>
+    </div>
+</div>
+<div class="modal" data-modal="3">
+    <div class="modal__content ">
+        <div class="modal__close"></div>
+        <div class="modal__content-img">
+            <img src="img/modal-2.jpg" alt="">
+        </div>
+        <div class="modal__content-title">
+            Пришла пора Пете прийти<br> по поводу платы. Прошлый<br> период Петя-то прошляпил
+        </div>
+    </div>
+</div>
+<div class="modal" data-modal="6">
+    <div class="modal__content ">
+        <div class="modal__close"></div>
+        <div class="modal__content-img">
+            <img src="img/modal-3.jpg" alt="">
+        </div>
+        <div class="modal__content-title">
+            Поздравяем! Ты выиграл<br> пластинку… Но эта жопа тебя<br> ждет в России
+        </div>
+    </div>
+</div>
+<div class="modal" data-modal="2">
+    <div class="modal__content ">
+        <div class="modal__close"></div>
+        <div class="modal__content-img">
+            <img src="img/modal-4.jpg" alt="">
+        </div>
+        <div class="modal__content-title">
+            А почему ты мне<br> не звонишь?
+        </div>
+    </div>
+</div>
+<div class="modal" data-modal="4">
+    <div class="modal__content ">
+        <div class="modal__close"></div>
+        <div class="modal__content-img">
+            <img src="img/modal-5.jpg" alt="">
+        </div>
+        <div class="modal__content-title">
+            Батл - горячие перцы -<br> У кого перцы круче! <br><br>
+            А где твой перец?<br> Да его тут нет!
+        </div>
+    </div>
+</div>
+<div class="modal" data-modal="5">
+    <div class="modal__content ">
+        <div class="modal__close"></div>
+        <div class="modal__content-img">
+            <img src="img/modal-6.jpg" alt="">
+        </div>
+        <div class="modal__content-title">
+            Игра идет слишком долго!<br> Крути дальше
+        </div>
+    </div>
+</div>
+<div class="modal" data-modal="8">
+    <div class="modal__content ">
+        <div class="modal__close"></div>
+        <div class="modal__content-img">
+            <img src="img/modal-7.jpg" alt="">
+        </div>
+        <div class="modal__content-title">
+            Срочно свяжись с Таней<br> Чудиной! Скажи ей - кодовое<br> слово
+        </div>
+    </div>
+</div>
 
 
 <script>
@@ -147,32 +246,64 @@
             item.classList.add('active');
         });
     }
-
+    const audioElem = document.querySelector('.tartata-audio');
     // Определение текущего угла поворота
     const circle = document.querySelector('.circle_wrapper');
     let currentAngle = 0;
+    let currentSector = 0;
     function spinWheel() {
         // Добавление 360 градусов к текущему углу поворота
         currentAngle += 720;
         // Определение сектора, на котором круг остановится
-        const sector = Math.floor(Math.random() * 9) + 1;
+        let sector = Math.floor(Math.random() * 9) + 1;
         // Расчет угла поворота круга на основе текущего угла поворота и выбранного сектора
+        if (sector + 1 == 7) {
+            sector = 8
+        }
         const angle = 40 * sector + currentAngle;
         // Анимация вращения круга
         circle.style.transform = "rotate(" + (angle) + "deg)";
         circle.style.transition = "transform 5s ease-in-out";
         // Вывод результата
         const result = String(sector + 1).slice(0, 1);
-        console.log(result);
+        currentSector = result;
     }
 
     const spinnerBtn = document.querySelector('.whell-btn');
     circle.addEventListener('transitionstart', (e) => {
-        spinnerBtn.classList.add('spin')
+        spinnerBtn.classList.add('spin');
+        audioElem.play();
     });
     circle.addEventListener('transitionend', (e) => {
-        spinnerBtn.classList.remove('spin')
+        spinnerBtn.classList.remove('spin');
+        console.log(currentSector);
+        const currentModal = document.querySelector(`[data-modal="${currentSector}"]`);
+        if (currentModal) {
+            currentModal.classList.add('active');
+        }
+        setTimeout(() => {
+            audioElem.pause();
+            audioElem.currentTime = 0.0;
+        }, 400);
     });
+
+    document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.closest('.modal__close')) {
+            target.closest('.modal').classList.remove('active');
+        }
+        if (target.closest('.mute-btn.mute')) {
+            target.closest('.mute-btn').classList.remove('mute');
+            audioElem.volume = 1;
+            return;
+        }
+        if (target.closest('.mute-btn')) {
+            target.closest('.mute-btn').classList.add('mute');
+            audioElem.volume = 0;
+            return;
+        }
+    })
+
 </script>
 
 </html>

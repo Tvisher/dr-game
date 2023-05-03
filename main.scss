@@ -44,7 +44,10 @@
         overflow: hidden;
     }
 
+    body {
+        font-family: 'Arial';
 
+    }
 
     .letter__item {
         width: 100%;
@@ -54,7 +57,6 @@
         justify-content: center;
         text-transform: uppercase;
         background: linear-gradient(158.77deg, #FFFFFF 3.15%, #C8DDFF 138.64%);
-        font-family: 'Arial';
         font-style: normal;
         font-weight: 700;
         text-align: center;
@@ -101,8 +103,21 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        // overflow: hidden;
         transform: translate(-50%, -40%);
+
+        &::before {
+            width: 40%;
+            height: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 90%);
+            content: '';
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='126' height='77' viewBox='0 0 126 77' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0 0H126V124.146C126 153.631 0 147.424 0 124.146V0Z' fill='url(%23paint0_linear_3476_46485)'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_3476_46485' x1='0' y1='46.9565' x2='126' y2='46.9565' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23C1C4CF'/%3e%3cstop offset='0.09375' stop-color='%2334363F'/%3e%3cstop offset='0.722068' stop-color='%236A6F82'/%3e%3cstop offset='0.897899' stop-color='%238B90A5'/%3e%3cstop offset='1' stop-color='%23D4D6DF'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e ");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: top;
+        }
 
     }
 
@@ -180,5 +195,92 @@
             height: 100%;
             object-fit: contain;
             object-position: bottom;
+        }
+    }
+
+    .modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal__close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M15.8493 0.292893C15.4588 -0.0976313 14.8256 -0.0976309 14.4351 0.292893L8.07104 6.65693L1.70711 0.292987C1.31658 -0.0975377 0.683417 -0.0975379 0.292893 0.292986C-0.0976313 0.683511 -0.0976309 1.31668 0.292893 1.7072L6.65683 8.07114L0.292941 14.435C-0.0975831 14.8256 -0.0975833 15.4587 0.292941 15.8492C0.683465 16.2398 1.31663 16.2398 1.70715 15.8492L8.07104 9.48535L14.435 15.8493C14.8256 16.2399 15.4587 16.2399 15.8492 15.8493C16.2398 15.4588 16.2398 14.8256 15.8492 14.4351L9.48526 8.07114L15.8493 1.70711C16.2398 1.31658 16.2398 0.683417 15.8493 0.292893Z' fill='%2303010B'/%3e%3c/svg%3e ");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+
+        .modal__content {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            background: #E9F2FF;
+            box-shadow: 0px 4px 10px rgba(38, 39, 72, 0.4);
+            border-radius: 8px;
+            padding: 25px 30px;
+            display: flex;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 150%;
+            color: #333333;
+
+            .modal__content-img {
+                margin-right: 30px;
+                width: 300px;
+                height: 300px;
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
+    .tartata-audio {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .mute-btn {
+        cursor: pointer;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        width: 30px;
+        height: 30px;
+
+        &.mute {
+            svg path {
+                fill: red;
+            }
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
     }
