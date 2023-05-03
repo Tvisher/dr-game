@@ -154,14 +154,14 @@
     let currentAngle = 0;
     function spinWheel() {
         // Добавление 360 градусов к текущему углу поворота
-        currentAngle += 360;
+        currentAngle += 720;
         // Определение сектора, на котором круг остановится
         const sector = Math.floor(Math.random() * 9) + 1;
         // Расчет угла поворота круга на основе текущего угла поворота и выбранного сектора
         const angle = 40 * sector + currentAngle;
         // Анимация вращения круга
         circle.style.transform = "rotate(" + (angle) + "deg)";
-        circle.style.transition = "transform 3s ease-in-out";
+        circle.style.transition = "transform 5s ease-in-out";
         // Вывод результата
         const result = document.getElementById("result");
         result.innerHTML = "Круг остановился на секторе " + (sector + 1);
