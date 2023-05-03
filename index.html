@@ -143,6 +143,7 @@
         item.nextElementSibling.style.transitionDelay = `${i * 150}ms`;
     });
     window.onload = () => {
+        document.body.style.opacity = '1';
         letters.forEach((item) => {
             item.classList.add('active');
         });
