@@ -251,22 +251,20 @@
     const circle = document.querySelector('.circle_wrapper');
     let currentAngle = 0;
     let currentSector = 0;
+    let step = 0
+    const stepsList = [9, 5, 3, 2, 8, 4, 6];
     function spinWheel() {
         // Добавление 360 градусов к текущему углу поворота
         currentAngle += 720;
         // Определение сектора, на котором круг остановится
-        let sector = Math.floor(Math.random() * 9) + 1;
-        // Расчет угла поворота круга на основе текущего угла поворота и выбранного сектора
-        if (sector + 1 == 7) {
-            sector = 8
-        }
+        let sector = stepsList[step] - 1;
+        currentSector = sector + 1;
+        step == 6 ? step = 0 : step++;
         const angle = 40 * sector + currentAngle;
         // Анимация вращения круга
         circle.style.transform = "rotate(" + (angle) + "deg)";
         circle.style.transition = "transform 5s ease-in-out";
-        // Вывод результата
-        const result = String(sector + 1).slice(0, 1);
-        currentSector = result;
+
     }
 
     const spinnerBtn = document.querySelector('.whell-btn');
