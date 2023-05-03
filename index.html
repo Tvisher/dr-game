@@ -131,7 +131,6 @@
             </div>
         </div>
         <button onclick="spinWheel()" class="whell-btn">ЖМИ</button>
-        <p id="result"></p>
     </main>
 </body>
 
@@ -163,21 +162,17 @@
         circle.style.transform = "rotate(" + (angle) + "deg)";
         circle.style.transition = "transform 5s ease-in-out";
         // Вывод результата
-        const result = document.getElementById("result");
-        result.innerHTML = "Круг остановился на секторе " + (sector + 1);
+        const result = String(sector + 1).slice(0, 1);
+        console.log(result);
     }
-
 
     const spinnerBtn = document.querySelector('.whell-btn');
     circle.addEventListener('transitionstart', (e) => {
         spinnerBtn.classList.add('spin')
     });
-
     circle.addEventListener('transitionend', (e) => {
         spinnerBtn.classList.remove('spin')
     });
-
-
 </script>
 
 </html>
