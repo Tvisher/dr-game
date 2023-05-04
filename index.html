@@ -252,7 +252,7 @@
     let currentAngle = 0;
     let currentSector = 0;
     let step = 0
-    const stepsList = [9, 5, 3, 2, 8, 4, 6];
+    const stepsList = [9, 3, 6, 2, 4, 5, 8];
     function spinWheel() {
         // Добавление 360 градусов к текущему углу поворота
         currentAngle += 720;
@@ -287,7 +287,7 @@
 
     document.addEventListener('click', (e) => {
         const target = e.target;
-        if (target.closest('.modal__close')) {
+        if (target.closest('.modal__close') || (target.closest('.modal') && !target.closest('.modal__content'))) {
             target.closest('.modal').classList.remove('active');
         }
         if (target.closest('.mute-btn.mute')) {
